@@ -5,6 +5,7 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
 from discord.utils import get
+import time as t, datetime as dt
 
 from fastapi import Depends, FastAPI, HTTPException, Security
 from fastapi.security.api_key import APIKeyHeader, APIKey
@@ -12,7 +13,8 @@ from sqlalchemy.orm import Session
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse, HTMLResponse
 
-from . import crud, models, schemas, gestion as ge
+from . import crud, models, schemas
+from . import gestion as ge, stats
 from .database import SessionLocal, engine
 
 
@@ -63,6 +65,8 @@ async def get_api_key(api_key_header: str = Security(api_key_header)):
 
 ################### API ########################
 client.remove_command("help")
+
+# client.load_extension('core.stats')
 
 @app.on_event("startup")
 async def startup_event():
@@ -212,7 +216,8 @@ def create_user(discord_id: str, db: Session = Depends(get_db), api_key: APIKey 
 @app.get("/users/", response_model=List[schemas.TableCore], tags=["Users"])
 def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     users = crud.get_users(db=db, skip=skip, limit=limit)
-    return users
+    func = {'error': 0, 'etat': 'OK', 'skip': skip, 'limit': limit, 'users': users}
+    return JSONResponse(content=jsonable_encoder(func))
 
 
 @app.get("/users/{PlayerID}", response_model=schemas.TableCore, tags=["Users"])
@@ -499,6 +504,64 @@ async def discord_roles_remove(DiscordID: int, Role: str, api_key: APIKey = Depe
             func = {'error': 1, 'etat': 'NOK', 'msg': 'Role {0} introuvable'.format(Role)}
         else:
             func = {'error': 0, 'etat': 'OK', 'msg': 'Role {0} retiré'.format(Role)}
+    return func
+
+
+# ========= Stats =========
+@app.put("/stats/create/hour/", tags=["Statistiques"])
+def stats_create_hour(date: str, hourA: int, hourB: int, nbmsg: int, nbreaction: int, db: Session = Depends(get_db), api_key: APIKey = Depends(get_api_key)):
+    # try:
+    res = crud.create_stats(db, date, hourA, hourB, nbmsg, nbreaction)
+    func = {'error': 0, 'etat': 'OK', 'stats': res}
+    # except:
+    #     func = {'error': 1, 'etat': 'NOK'}
+    return JSONResponse(content=jsonable_encoder(func))
+
+
+@app.get("/stats/msg/hour/", tags=["Statistiques"])
+def stats_message_hour(skip: int = (dt.datetime.now().hour) - 1, limit: int = dt.datetime.now().hour, db: Session = Depends(get_db), api_key: APIKey = Depends(get_api_key)):
+    res = stats.hourMsg(db=db, ha=skip, hb=limit)
+    func = {'error': 0, 'etat': 'OK', 'msghour': res}
+    return func
+
+
+@app.get("/stats/msg/hour/graph/", tags=["Statistiques"])
+async def stats_message_graph_hour(guildid: int, channelid: int, db: Session = Depends(get_db), api_key: APIKey = Depends(get_api_key)):
+    try:
+        await stats.graphheure(db, client, guildid, channelid)
+        func = {'error': 0, 'etat': 'OK'}
+    except:
+        func = {'error': 1, 'etat': 'NOK'}
+    return func
+
+
+@app.get("/stats/msg/day/graph/", tags=["Statistiques"])
+async def stats_message_graph_jour(guildid: int, channelid: int, db: Session = Depends(get_db), api_key: APIKey = Depends(get_api_key)):
+    try:
+	    await stats.graphjour(db, client, guildid, channelid)
+	    func = {'error': 0, 'etat': 'OK'}
+    except:
+        func = {'error': 1, 'etat': 'NOK'}
+    return func
+
+
+@app.get("/stats/msg/graph/", tags=["Statistiques"])
+async def stats_message_graph(guildid: int, channelid: int, range: int = 6, db: Session = Depends(get_db), api_key: APIKey = Depends(get_api_key)):
+    try:
+	    await stats.graphmsg(db, client, guildid, channelid, range)
+	    func = {'error': 0, 'etat': 'OK'}
+    except:
+        func = {'error': 1, 'etat': 'NOK'}
+    return func
+
+
+@app.get("/stats/xp/graph/", tags=["Statistiques"])
+async def stats_xp_graph(guildid: int, channelid: int, range: int = 6, db: Session = Depends(get_db), api_key: APIKey = Depends(get_api_key)):
+    try:
+	    await stats.graphxp(db, client, guildid, channelid, range)
+	    func = {'error': 0, 'etat': 'OK'}
+    except:
+        func = {'error': 1, 'etat': 'NOK'}
     return func
 
 

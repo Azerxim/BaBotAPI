@@ -132,7 +132,8 @@ dmypy.json
 
 
 # other
-config/token.txt
 *.db
 *.bak
+config/token.txt
 config/key.txt
+cache/*

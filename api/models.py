@@ -47,6 +47,19 @@ class TableComTime(Base):
     owner = relationship("TableCore", back_populates="com_time")
 
 
+class TableStats(Base):
+
+    __tablename__ = "stats"
+
+    idstats = Column(BigInteger, primary_key=True, index=True)
+    date = Column(String)
+    hour_start = Column(Integer)
+    hour_stop = Column(Integer)
+    nbmsg = Column(Integer)
+    nbreaction = Column(Integer)
+    playerid = Column(Integer)
+
+
 # class Table(Base):
 #
 #     __tablename__=""

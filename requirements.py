@@ -21,3 +21,6 @@ install("fastapi[all]", "0.65.2")
 
 # Base de données
 install("SQLAlchemy", "1.4.3")
+
+# Création de graphiques
+install("matplotlib", "3.4.2")

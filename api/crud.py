@@ -22,18 +22,23 @@ def get_user(db: Session, PlayerID: int):
 
 
 # -------------------------------------------------------------------------------
+def get_idstats(db: Session, ID: int):
+    return db.query(models.TableStats).filter(models.TableStats.idstats == ID).first()
+
+
+# -------------------------------------------------------------------------------
 def get_users(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.TableCore).offset(skip).limit(limit).all()
 
 
 # -------------------------------------------------------------------------------
-def get_user_old(db: Session, PlayerID: int):
-    return db.query(models.TableCoreOld).filter(models.TableCoreOld.playerid == PlayerID).first()
+# def get_user_old(db: Session, PlayerID: int):
+#     return db.query(models.TableCoreOld).filter(models.TableCoreOld.playerid == PlayerID).first()
 
 
 # -------------------------------------------------------------------------------
-def get_users_old(db: Session, skip: int = 0, limit: int = 100):
-    return db.query(models.TableCoreOld).offset(skip).limit(limit).all()
+# def get_users_old(db: Session, skip: int = 0, limit: int = 100):
+#     return db.query(models.TableCoreOld).offset(skip).limit(limit).all()
 
 
 # -------------------------------------------------------------------------------
@@ -87,7 +92,7 @@ def create_user(db: Session, discord_id):
 
 # -------------------------------------------------------------------------------
 def create_com_time(db: Session, user: schemas.TableComTime):
-    db_user = models.GemsComTime(
+    db_user = models.TableComTime(
         playerid = user.playerid,
         command = user.command,
         time = user.time
@@ -96,6 +101,30 @@ def create_com_time(db: Session, user: schemas.TableComTime):
     db.commit()
     db.refresh(db_user)
     return db_user
+
+
+# -------------------------------------------------------------------------------
+def create_stats(db: Session, date, hour_start, hour_stop, nbmsg, nbreaction):
+    id = 1
+    boucleID = True
+    while boucleID:
+        if not get_idstats(db, id):
+            boucleID = False
+        else:
+            id += 1
+    db_create = models.TableStats(
+        idstats = id,
+        date = str(date),
+        hour_start = int(hour_start),
+        hour_stop = int(hour_stop),
+        nbmsg = int(nbmsg),
+        nbreaction = int(nbreaction),
+        playerid = 0
+    )
+    db.add(db_create)
+    db.commit()
+    db.refresh(db_create)
+    return db_create
 
 
 # ===============================================================================

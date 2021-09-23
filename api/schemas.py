@@ -21,6 +21,19 @@ class TableCoreOld(BaseModel):
         orm_mode = True
 
 
+class TableStats(BaseModel):
+    idstats: int
+    date: str
+    hour_start: int
+    hour_stop: int
+    nbmsg: int
+    nbreaction: int
+    playerid: int
+
+    class Config:
+        orm_mode = True
+
+
 
 class TableCore(BaseModel):
     playerid: int
