@@ -4,10 +4,15 @@ idBASTION = 417445502641111051
 
 
 class bcolors:
-    OK = '\033[92m' #GREEN
-    WARNING = '\033[93m' #YELLOW
-    FAIL = '\033[91m' #RED
-    RESET = '\033[0m' #RESET COLOR
+	end = '\033[0m'
+	black = '\033[30m'
+	white = '\033[37m'
+	red = '\033[31m'
+	green = '\033[32m'
+	yellow = '\033[33m'
+	blue = '\033[34m'
+	purple = '\033[35m'
+	lightblue = '\033[36m'
 
 
 async def addrole(member, role):
