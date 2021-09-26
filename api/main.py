@@ -542,8 +542,8 @@ async def stats_message_graph_hour(guildid: int, channelid: int, db: Session = D
 @app.get("/stats/msg/day/graph/", tags=["Statistiques"])
 async def stats_message_graph_jour(guildid: int, channelid: int, db: Session = Depends(get_db), api_key: APIKey = Depends(get_api_key)):
     try:
-	    await stats.graphjour(db, client, guildid, channelid)
-	    func = {'error': 0, 'etat': 'OK'}
+        await stats.graphjour(db, client, guildid, channelid)
+        func = {'error': 0, 'etat': 'OK'}
     except:
         func = {'error': 1, 'etat': 'NOK'}
     return func
@@ -552,8 +552,8 @@ async def stats_message_graph_jour(guildid: int, channelid: int, db: Session = D
 @app.get("/stats/msg/graph/", tags=["Statistiques"])
 async def stats_message_graph(guildid: int, channelid: int, range: int = 6, db: Session = Depends(get_db), api_key: APIKey = Depends(get_api_key)):
     try:
-	    await stats.graphmsg(db, client, guildid, channelid, range)
-	    func = {'error': 0, 'etat': 'OK'}
+        await stats.graphmsg(db, client, guildid, channelid, range)
+        func = {'error': 0, 'etat': 'OK'}
     except:
         func = {'error': 1, 'etat': 'NOK'}
     return func
@@ -562,8 +562,8 @@ async def stats_message_graph(guildid: int, channelid: int, range: int = 6, db: 
 @app.get("/stats/xp/graph/", tags=["Statistiques"])
 async def stats_xp_graph(guildid: int, channelid: int, range: int = 6, db: Session = Depends(get_db), api_key: APIKey = Depends(get_api_key)):
     try:
-	    await stats.graphxp(db, client, guildid, channelid, range)
-	    func = {'error': 0, 'etat': 'OK'}
+        await stats.graphxp(db, client, guildid, channelid, range)
+        func = {'error': 0, 'etat': 'OK'}
     except:
         func = {'error': 1, 'etat': 'NOK'}
     return func
