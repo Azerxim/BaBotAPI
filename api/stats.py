@@ -284,12 +284,12 @@ async def graphxp(db: Session, client, guildid, channelid, r = 6):
 	for user in users:
 		try:
 			IDi = user['discord_id']
-			nbMsg = user['nbmsg']
+			xp = user['xp']
 			label = "Utilisateur inconnu\n{}".format(IDi)
 			for member in members:
 				if str(member.id) == str(IDi):
 					label = member.name
-			a.append([nbMsg, IDi, label])
+			a.append([xp, IDi, label])
 		except:
 			pass
 	a.sort(reverse = True)
