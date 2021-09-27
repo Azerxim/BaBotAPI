@@ -139,6 +139,7 @@ async def graphheure(db: Session, client, guildid, channelid, statue = "local", 
 		plt.ylabel('messages')
 		plt.title("graphique du {}".format(jour))
 		plt.savefig("cache/graphheure.png")
+		t.sleep(0.05)
 		await channel.send(file=discord.File("cache/graphheure.png"))
 		if os.path.isfile("cache/graphheure.png"):
 			os.remove('cache/graphheure.png')
@@ -191,6 +192,7 @@ async def graphjour(db: Session, client, guildid, channelid, statue = "local", m
 		plt.ylabel('messages')
 		plt.title("graphique du 1 au {} {}".format(jour_mois, nom_mois))
 		plt.savefig("cache/graphjour.png")
+		t.sleep(0.05)
 		await channel.send(file=discord.File("cache/graphjour.png"))
 		if os.path.isfile("cache/graphjour.png"):
 			os.remove('cache/graphjour.png')
@@ -253,6 +255,7 @@ async def graphmsg(db: Session, client, guildid, channelid, r = 6):
 	plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90, explode=explode)
 	plt.axis('equal')
 	plt.savefig('cache/msggrapf.png')
+	t.sleep(0.05)
 	await channel.send(file=discord.File("cache/msggrapf.png"))
 	plt.clf()
 	if os.path.isfile("cache/msggrapf.png"):
@@ -315,6 +318,7 @@ async def graphxp(db: Session, client, guildid, channelid, r = 6):
 	plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90, explode=explode)
 	plt.axis('equal')
 	plt.savefig('cache/xpgrapf.png')
+	t.sleep(0.05)
 	await channel.send(file=discord.File("cache/xpgrapf.png"))
 	plt.clf()
 	if os.path.isfile("cache/xpgrapf.png"):
