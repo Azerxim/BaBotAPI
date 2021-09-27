@@ -179,7 +179,7 @@ def topxp(db: Session, min = 0, max = 10):
         DBtaille = int(DBtaille['taille'])
     users = get_users(db=db, skip=0, limit=DBtaille)
     for user in users:
-        IDi = int(user.discord_id)
+        IDi = user.discord_id
         nbMsg = user.nbmsg
         nbReac = user.nbreaction
         XP = user.xp
@@ -207,7 +207,7 @@ def toplevel(db: Session, min = 0, max = 10):
         DBtaille = int(DBtaille['taille'])
     users = get_users(db=db, skip=0, limit=DBtaille)
     for user in users:
-        IDi = int(user.discord_id)
+        IDi = user.discord_id
         nbMsg = user.nbmsg
         nbReac = user.nbreaction
         XP = user.xp
@@ -235,7 +235,7 @@ def topmsg(db: Session, min = 0, max = 10):
         DBtaille = int(DBtaille['taille'])
     users = get_users(db=db, skip=0, limit=DBtaille)
     for user in users:
-        IDi = int(user.discord_id)
+        IDi = user.discord_id
         nbMsg = user.nbmsg
         nbReac = user.nbreaction
         XP = user.xp
@@ -263,7 +263,7 @@ def topreaction(db: Session, min = 0, max = 10):
         DBtaille = int(DBtaille['taille'])
     users = get_users(db=db, skip=0, limit=DBtaille)
     for user in users:
-        IDi = int(user.discord_id)
+        IDi = user.discord_id
         nbMsg = user.nbmsg
         nbReac = user.nbreaction
         XP = user.xp
