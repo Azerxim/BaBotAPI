@@ -102,6 +102,37 @@ def hourMsg(db: Session, ha, hb):
 	return msg
 
 
+def mois(db: Session, mois, annee):
+	"""
+	**[mois]** | Donne les statistiques textuel du mois sélectioné.
+	"""
+	if (mois >= 1 and mois <= 12):
+		try:
+			if (mois >= 1 and mois <= 9):
+				mois = '0{}'.format(mois)
+			if (annee is None or annee == 0):
+				annee = dt.datetime.now().year
+				print(annee)
+			script = "SELECT DISTINCT(date) as date, SUM(nbmsg) as msg, SUM(nbreaction) as reaction FROM stats"
+			script += " WHERE date LIKE '%{annee}-{date}-%'".format(date=mois, annee=annee)
+			script += " GROUP BY date"
+			script += " ORDER BY idstats"
+			# print(script)
+			script = text(script)
+			value = db.execute(script).fetchall()
+		except:
+			# Aucune données n'a été trouvé
+			value = False
+
+		if value is False or value == []:
+			msg = "Les statistiques de ce mois ne sont pas disponible"
+		else:
+			msg = value
+	else:
+		msg = 'Vous avez entré un mois impossible.'
+	return msg
+
+
 async def graphheure(db: Session, client, guildid, channelid, statue = "local", jour = "yesterday"):
 	"""|local/total aaaa-mm-jj| Affiche le graph des messages envoyés par heure."""
 	guild = client.get_guild(guildid)

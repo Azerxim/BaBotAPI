@@ -232,18 +232,18 @@ def read_user(PlayerID: int, db: Session = Depends(get_db)):
     return db_user
 
 
-# @app.get("/users/old/", response_model=List[schemas.TableCoreOld], tags=["Users"])
-# def old_read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-#     users = crud.get_users_old(db=db, skip=skip, limit=limit)
-#     return users
-#
-#
-# @app.get("/users/old/{PlayerID}", response_model=schemas.TableCoreOld, tags=["Users"])
-# def old_read_user(PlayerID: int, db: Session = Depends(get_db)):
-#     db_user = crud.get_user_old(db=db, PlayerID=PlayerID)
-#     if db_user is None:
-#         raise HTTPException(status_code=404, detail="User not found")
-#     return db_user
+@app.get("/users/old/", response_model=List[schemas.TableCoreOld], tags=["Old"])
+def old_read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    users = crud.get_users_old(db=db, skip=skip, limit=limit)
+    return users
+
+
+@app.get("/users/old/{PlayerID}", response_model=schemas.TableCoreOld, tags=["Old"])
+def old_read_user(PlayerID: int, db: Session = Depends(get_db)):
+    db_user = crud.get_user_old(db=db, PlayerID=PlayerID)
+    if db_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return db_user
 
 # ----- Devise -----
 @app.get("/users/devise/{PlayerID}", tags=["Users"])
@@ -526,6 +526,15 @@ def stats_create_hour(date: str, hourA: int, hourB: int, nbmsg: int, nbreaction:
 def stats_message_hour(skip: int = (dt.datetime.now().hour) - 1, limit: int = dt.datetime.now().hour, db: Session = Depends(get_db), api_key: APIKey = Depends(get_api_key)):
     res = stats.hourMsg(db=db, ha=skip, hb=limit)
     func = {'error': 0, 'etat': 'OK', 'msghour': res}
+    return func
+
+
+@app.get("/stats/mois/", tags=["Statistiques"])
+def stats_message_hour(mois: int , annee: int , db: Session = Depends(get_db), api_key: APIKey = Depends(get_api_key)):
+    res = stats.mois(db=db, mois=mois, annee=annee)
+    func = {'error': 0, 'etat': 'OK', 'mois': res}
+    if (isinstance(res, str)):
+        func = {'error': 1, 'etat': 'NOK', 'mois': res}
     return func
 
 
