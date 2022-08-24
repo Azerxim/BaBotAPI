@@ -2,6 +2,8 @@
 
 API du Bastion
 
+Version 3.1.32
+
 # Lancement
 
 ```bash
