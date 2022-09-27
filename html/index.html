@@ -7,159 +7,238 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bastion - BaBot API</title>
-	<link rel="icon" href="https://www.bastion-gaming.fr/images/Favicon.png">
+	<link rel="icon" href="//topazdev.fr/images/favicon.ico">
 	<meta name="description" content="Bastion est une team multi-gaming fun, ouverte à tous !">
-	<meta name="keywords" content="bastion, gaming, discord, fun, multi-gaming, TESO, minecraft, CSGO, trackmania"/>
+	<meta name="keywords" content="bastion, gaming, discord, fun, multi-gaming"/>
 
-<!--====== Style CSS ======-->
-  <link rel="stylesheet" type="text/css" href="https://css.topazdev.fr/6.6x/display.css">
-  <!-- <link rel="stylesheet" type="text/css" href="https://css.topazdev.fr/6.6x/menu.css"> -->
-  <!-- <link rel="stylesheet" type="text/css" href="https://css.topazdev.fr/6.6x/menu_bordure.css"> -->
-  <link rel="stylesheet" type="text/css" href="https://css.topazdev.fr/6.6x/background.css">
-  <link rel="stylesheet" type="text/css" href="https://css.topazdev.fr/6.6x/color.css">
-  <link rel="stylesheet" type="text/css" href="https://css.topazdev.fr/6.6x/button.css">
-  <!-- <link rel="stylesheet" type="text/css" href="https://css.topazdev.fr/6.6x/tableau.css"> -->
-  <!-- <link rel="stylesheet" type="text/css" href="https://css.topazdev.fr/6.6x/filtres.css"> -->
-  <!-- <link rel="stylesheet" type="text/css" href="https://css.topazdev.fr/6.6x/form.css"> -->
-  <!-- <link rel="stylesheet" type="text/css" href="https://css.topazdev.fr/6.6x/msgbox.css"> -->
-  <!-- <link rel="stylesheet" type="text/css" href="https://css.topazdev.fr/6.6x/markdown.css"> -->
-  <link rel="stylesheet" type="text/css" href="https://css.topazdev.fr/6.6x/responsive.css">
-  <link rel="stylesheet" type="text/css" href="https://www.bastion-gaming.fr/css/bastion_bulma.css">
+	<!--====== Style CSS ======-->
+	<!-- <link rel="stylesheet" href="//css.topazdev.fr/v7/main.css"> -->
+	<link rel="stylesheet" href="//css.topazdev.fr/v7/display.css">
+	<link rel="stylesheet" href="//css.topazdev.fr/v7/colors.css">
+	<link rel="stylesheet" href="//css.topazdev.fr/v7/responsive.css">
+	<!-- <link rel="stylesheet" href="//css.topazdev.fr/v7/msgbox.css"> -->
+	<!-- <link rel="stylesheet" href="//css.topazdev.fr/v7/markdown.css"> -->
+
+	<link rel="stylesheet" href="//css.topazdev.fr/v7/bulma.td.css">
+
+	<link rel="stylesheet" href="//css.topazdev.fr/v7/fontawesome/css/all.css">
+	<script defer src="//css.topazdev.fr/v7/fontawesome/js/all.js"></script>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://www.jsdelivr.com/package/npm/@creativebulma/bulma-tagsinput/dist/js/bulma-tagsinput.min.js"></script>
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900" rel="stylesheet">
-
-<!--====== Scripts ======-->
-  <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
 
 </head>
 
 <!--====== HTML Body ======-->
 <body>
 
-  <section class="hero is-black is-info is-hidden-touch" style="background: #222222 url(https://www.bastion-gaming.fr/images/Bastionwallpaper2.png) no-repeat center top; border-bottom: #313131 solid;">
-    <!-- Hero content: will be in the middle -->
+	<nav class="navbar is-TD-smoothwhite" style="z-index: 10;" role="navigation" aria-label="main navigation">
+	  <div class="navbar-brand">
+	    <a class="navbar-item" href="//topazdev.fr">
+				<img src="//topazdev.fr/images/topazdev.svg" alt="TopazDev">
+	    </a>
+
+	    <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+	      <span aria-hidden="true"></span>
+	      <span aria-hidden="true"></span>
+	      <span aria-hidden="true"></span>
+	    </a>
+	  </div>
+
+	  <div class="navbar-menu" id="navMenu">
+	    <div class="navbar-start">
+				<!-- Bastion -->
+				<div class="navbar-item has-dropdown is-hoverable">
+	        <a class="navbar-link" href="//topazdev.fr/?p=bastion">
+	          Bastion
+	        </a>
+
+	        <div class="navbar-dropdown is-primary is-boxed">
+	          <a class="navbar-item" href="https://github.com/bastion-gaming/BaBotJS" target="_blank">
+	            <span>BaBot JS</span>
+	          </a>
+						<a class="navbar-item" href="https://github.com/bastion-gaming/BaBotAPI" target="_blank">
+	            <span>BaBot API</span>
+	          </a>
+	        </div>
+	      </div>
+
+				<!-- Spinelle Galaxie Studio -->
+	      <a class="navbar-item" href="//spinelle.eu">
+	        Spinelle Galaxie
+	      </a>
+
+				<!-- Minecraft -->
+	      <a class="navbar-item" href="//topazdev.fr/minecraft">
+	        Minecraft
+	      </a>
+
+				<!-- Serveurs -->
+				<div class="navbar-item has-dropdown is-hoverable">
+					<a class="navbar-link is-link" href="//topazdev.fr/?p=serv">Serveurs</a>
+
+	        <div class="navbar-dropdown is-primary is-boxed">
+	          <a class="navbar-item" href="//topazdev.fr/minecraft/mbu">
+	            <span>Minecraft Bastion Universe</span>
+	          </a>
+	        </div>
+	      </div>
+
+	    </div>
+	  </div>
+	</nav>
+
+	<script>
+	  document.addEventListener('DOMContentLoaded', () => {
+	    // Get all "navbar-burger" elements
+	    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+	    // Check if there are any navbar burgers
+	    if ($navbarBurgers.length > 0) {
+
+	      // Add a click event on each of them
+	      $navbarBurgers.forEach( el => {
+	        el.addEventListener('click', () => {
+
+	          // Get the target from the "data-target" attribute
+	          const target = el.dataset.target;
+	          const $target = document.getElementById(target);
+
+	          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+	          el.classList.toggle('is-active');
+	          $target.classList.toggle('is-active');
+
+	        });
+	      });
+	    }
+	  });
+	</script>
+
+	<div class="">
+	  <nav class="navbar is-TD-ultradarkblue" role="navigation" aria-label="main navigation" style="z-index: 1;">
+	    <div class="navbar-brand">
+				<a class="navbar-item" href="//topazdev.fr/?p=bastion">
+	        <img src="//topazdev.fr/images/bastion_w.png" width="112" height="28">
+	      </a>
+	      <a role="button" class="navbar-burger" data-target="navSousMenu" aria-label="sousmenu" aria-expanded="false">
+	        <span aria-hidden="true"></span>
+	        <span aria-hidden="true"></span>
+	        <span aria-hidden="true"></span>
+	      </a>
+	    </div>
+
+	    <div class="navbar-menu" id="navSousMenu">
+	      <div class="navbar-start">
+					<a class="navbar-item" href="//topazdev.fr/?p=bastion&nav=Fonctionnement">
+						Fonctionnement
+					</a>
+	        <a class="navbar-item" href="//topazdev.fr/?p=bastion&nav=Amis">
+						Amis
+					</a>
+				</div>
+
+	    </div>
+	  </nav>
+	</div>
+
+	<script>
+	  document.addEventListener('DOMContentLoaded', () => {
+	    // Get all "navbar-burger" elements
+	    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.Snavbar-burger'), 0);
+
+	    // Check if there are any navbar burgers
+	    if ($navbarBurgers.length > 0) {
+
+	      // Add a click event on each of them
+	      $navbarBurgers.forEach( el => {
+	        el.addEventListener('click', () => {
+
+	          // Get the target from the "data-target" attribute
+	          const target = el.dataset.target;
+	          const $target = document.getElementById(target);
+
+	          // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+	          el.classList.toggle('is-active');
+	          $target.classList.toggle('is-active');
+
+	        });
+	      });
+	    }
+	  });
+	</script>
+
+	<section class="hero is-black is-info" style="background: #222222 url(//topazdev.fr/images/bastion_wallpaper.png) no-repeat center top; border-bottom: #313131 solid;">
     <div class="hero-body">
       <div class="container has-text-centered">
         <h1 class="title shadow">
-          <img src="https://www.bastion-gaming.fr/images/logo/Bastion%20White.png" width="112" height="28">
+          <img src="//topazdev.fr/images/bastion_w.png" width="112" height="28">
         </h1>
         <h2 class="subtitle shadow">
           BaBot API
         </h2>
         <a href="https://discord.gg/HBnaWDh" target="_blank" >
-          <div class="button is-TD_ultradarkblue" style="padding-right: 15%; padding-left: 15%; background-color: #7289DA; color: white; height: 50px;">
+          <div class="button is-TD-ultradarkblue" style="padding-right: 15%; padding-left: 15%; background-color: #7289DA; color: white; height: 50px;">
             Discord
           </div>
         </a>
       </div>
     </div>
   </section>
-  <section>
-    <nav class="navbar is-light" role="navigation" aria-label="main navigation" style="background: dark;">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="https://www.bastion-gaming.fr">
-          <img src="https://www.bastion-gaming.fr/images/logo/Bastion.png" width="112" height="28">
-        </a>
-
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-
-      <div id="navbarBasicExample" class="navbar-menu ">
-        <div class="navbar-start">
-          <a class="navbar-item " href="https://www.bastion-gaming.fr/?page=Fonctionnement">Fonctionnement</a>
-
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link is-link " href="https://www.bastion-gaming.fr/?page=Serveurs">Serveurs</a>
-
-            <div class="navbar-dropdown">
-              <a class="navbar-item" href="https://www.bastion-gaming.fr/minecraft/">
-                MC&nbsp;|&nbsp;BastionCraft
-              </a>
-            </div>
-          </div>
-          <a class="navbar-item " href="https://www.bastion-gaming.fr/?page=Agenda">Agenda</a>
-          <a class="navbar-item " href="https://www.bastion-gaming.fr/?page=Amis">Amis</a>
-        </div>
-
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <a class="button is-TD_ultrapurple" href="https://www.twitch.tv/bastionautes" target="_blank"><img src="https://www.bastion-gaming.fr/images/Menu-Twitch.png" style="width: 20px; margin-right: 5px;">Twitch</a>
-              <a class="button is-dark" href="https://github.com/bastion-gaming" target="_blank">GitHub</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        // Get all "navbar-burger" elements
-        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
-        // Check if there are any navbar burgers
-        if ($navbarBurgers.length > 0) {
-
-          // Add a click event on each of them
-          $navbarBurgers.forEach( el => {
-            el.addEventListener('click', () => {
-
-              // Get the target from the "data-target" attribute
-              const target = el.dataset.target;
-              const $target = document.getElementById(target);
-
-              // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-              el.classList.toggle('is-active');
-              $target.classList.toggle('is-active');
-
-            });
-          });
-        }
-      });
-    </script>
-  </section>
 
 <!--====== Corps ======-->
   <section style="padding: 30px 0 100px 0;">
 	  <!-- <h1 style="font-size: 40px;">DB API</h1> -->
-    <div class="flex fd_col flex_center_vertical " style="margin: 30px 20px;">
-      <a class="button is-TD_blue" style="width: 300px; height: 60px; font-size: 20px; margin: 7px;" href="/docs">Docs</a>
-      <a class="button is-TD_ultradarkblue" style="width: 300px; height: 60px; font-size: 20px; margin: 7px;" href="/version">Version</a>
+    <div class="flex fd-col flex-center-vertical " style="margin: 30px 20px;">
+      <a class="button is-TD-blue" style="width: 300px; height: 60px; font-size: 20px; margin: 7px;" href="/docs">Docs</a>
+      <a class="button is-TD-ultradarkblue" style="width: 300px; height: 60px; font-size: 20px; margin: 7px;" href="/version">Version</a>
     </div>
   </section>
 
-<!--====== Bas de page ======-->
-  <footer class="footer">
-    <div class="content has-text-centered">
-      <div class="" style="padding-top: 12px; margin-bottom: 20px;">
-        <a class="icon" href="https://github.com/bastion-gaming" target="_blank" style="color: #000; margin: 0 10px;">
-          <i class="fab fa-github"></i>
-        </a>
-        <a class="icon" href="https://discord.gg/HBnaWDh" target="_blank" style="color: #000; margin: 0 10px;">
-          <i class="fab fa-discord"></i>
-        </a>
-        <a class="icon" href="https://twitch.tv/bastionautes" target="_blank" style="color: #000; margin: 0 10px;">
-          <i class="fab fa-twitch"></i>
-        </a>
-      </div>
-      <p>
-        <strong>Bastion</strong>
-        <br>2018 • 2021
-        <br>Tous droits réservés à Bastion
-        <br>par Gnouf1 & Azerxim<br>
-      </p>
-      <div style="padding-top: 30px;">
-        <p>
-          Framework utilisé <a href="https://bulma.io/">Bulma</a>
-        </p>
-      </div>
-      <!-- Version 1.4.0 -->
-    </div>
-  </footer>
+	<!-- Version 7.1 -->
+	<footer class="footer" style="margin-top: 20px;">
+	  <div class="content has-text-centered flex fd-col gap-40">
+			<div class="flex fd-col gap-5">
+				<!-- Icons -->
+		    <div class="flex-center-full fd-row gap-20">
+		      <a class="icon ultradarkblue" href="https://github.com/Azerxim" target="_blank">
+		        <i class="fab fa-github"></i>
+		      </a>
+		      <a class="icon ultradarkblue" href="https://discord.gg/nUFwE9S" target="_blank">
+		        <i class="fab fa-discord"></i>
+		      </a>
+		      <a class="icon ultradarkblue" href="https://twitch.tv/bastionautes" target="_blank">
+		        <i class="fab fa-twitch"></i>
+		      </a>
+		      <a class="icon ultradarkblue" href="https://twitter.com/Azerxim" target="_blank">
+		        <i class="fab fa-twitter"></i>
+		      </a>
+		      <a class="icon ultradarkblue" href="https://www.youtube.com/channel/UC3BfRqB0yM1iCxmNv3ig_Nw" target="_blank">
+		        <i class="fab fa-youtube"></i>
+		      </a>
+		    </div>
+				<!-- Texte -->
+		    <div class="flex fd-col gap-2">
+		      <span><strong class="ultradarkblue">TopazDev</strong> 2015 • 2022</span>
+		      <span>Tous droits réservés</span>
+					<!-- <span>par Azerxim</span> -->
+		    </div>
+				<div class="flex-center-full fd-col">
+					<a href="mailto:contact@topazdev.fr" class="button is-TD-smoothwhite" target="_blank" style="width: auto;">
+						<span>contact@topazdev.fr</span>
+					</a>
+				</div>
+			</div>
+			<!-- Framework -->
+	    <div class="flex-center-full fd-col gap-5">
+	      <span>Framework utilisé</span>
+				<a href="https://bulma.io/" class="button is-TD-smoothwhite" target="_blank">
+					<img src="https://bulma.io/images/bulma-logo.png" alt="Bulma" width="60">
+				</a>
+	    </div>
+	  </div>
+	</footer>
 
 </body>
 </html>

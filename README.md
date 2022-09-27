@@ -2,7 +2,7 @@
 
 API du Bastion
 
-Version 3.1.32
+Version 3.1.33
 
 # Lancement
 
